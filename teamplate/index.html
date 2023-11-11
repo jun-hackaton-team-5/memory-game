@@ -22,31 +22,31 @@
       </div>
       <div class="row justify-content-center" style="gap: 43px; margin-bottom: 20px;">
         <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-          <img src="img/butterfly.svg" class="card-img-top py-4" alt="...">
+          <img src="img/butterfly.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
         </div>
         <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-          <img src="img/hand-heart.svg" class="card-img-top py-4" alt="...">
+          <img src="img/hand-heart.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
         </div>
         <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-          <img src="img/handshake.svg" class="card-img-top py-4" alt="...">
+          <img src="img/handshake.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
         </div>
         <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-          <img src="img/heart.svg" class="card-img-top py-4" alt="...">
+          <img src="img/heart.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
         </div>
       </div>
 
       <div class="row justify-content-center" style="gap: 43px; margin-bottom: 20px;">
         <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-          <img src="img/home.svg" class="card-img-top py-4" alt="...">
+          <img src="img/home.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
         </div>
         <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-          <img src="img/search-heart.svg" class="card-img-top py-4" alt="...">
+          <img src="img/search-heart.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
         </div>
         <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-          <img src="img/smile.svg" class="card-img-top py-4" alt="...">
+          <img src="img/smile.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
         </div>
         <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-          <img src="img/sun.svg" class="card-img-top py-4" alt="...">
+          <img src="img/sun.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
         </div>
       </div>
 
@@ -80,13 +80,39 @@
         </div>
       </div>
 
-    </div>
-    <main>
-    </main>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" id="myModalTitle">Are you sure?</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <p>your progress will be lost</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Yes, restart game</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">cancel</button>
+          </div>
+      </div>
+  </div>
+</div>
+
     <footer class="pt-5 my-5 text-muted border-top">
     </footer>
-  </div>
 
-  </div>
+  <script type="text/javascript">
+    window.onload = function() {
+        document.querySelector('img[src="img/restart.svg"]').onclick = function() {
+            $('#myModal').modal('show');
+        }
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"></script>
 </body>
 </html>
