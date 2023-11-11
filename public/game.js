@@ -47,7 +47,7 @@ const buildCardElement = ({ id, name, state }) => {
 
 const shuffle = (elements) => elements
     .map(value => ({ value, sort: Math.random() }))
-    // .sort((a, b) => a.sort - b.sort)
+    .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 
 /**
