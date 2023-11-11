@@ -12,10 +12,12 @@ const buildCardElement = (cardData) => {
     const url = cardData.state === CARDS_STATES.open
         ? buildOpenCardUrl(cardData.name)
         : buildClosedCardUrl(cardData);
+
     el.setAttribute('src', url);
+
     el.dataset.name = cardData.name;
     el.dataset.state = cardData.state;
-    el.addEventListener('click', ({ target }) => changeState(target));
+    el.dataset.id = cardData.id;
 
     return el;
 }
@@ -37,7 +39,18 @@ const shuffle = (elements) => elements
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 
+/**
+ * @param {HTMLElement} gameField
+ * @param {HTMLElement} cardEl
+ */
+const handleClickCard = (gameField, cardEl) => {
+    const { id, name, state } = cardEl.dataset;
+    changeState(cardEl);
+    console.log({id, name, state});
+};
+
 const prepareCards = () => {
+    let id = 1;
     const elements = [
         'red',
         'blue',
@@ -45,7 +58,8 @@ const prepareCards = () => {
         'purple'
     ];
     const cards = shuffle([...elements, ...elements]);
-    return cards.map((name) => ({name, state: 'closed'}));
+
+    return cards.map((name) => ({name, state: 'closed', id: id++ }));
 };
 
 const startGame = () => {
@@ -61,7 +75,7 @@ const startGame = () => {
         gameField.append(cardEl);
     });
     gameField.addEventListener('click', (event) => {
-        console.log(event.target);
+        handleClickCard(gameField, event.target);
     });
 };
 
