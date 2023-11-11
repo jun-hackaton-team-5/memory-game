@@ -4,7 +4,7 @@ const CARDS_STATES = {
     comparing: 'comparing',
 };
 
-const buildOpenCardUrl = (color) => `https://placehold.co/50x50/${color}/white?text=Open`;
+const buildOpenCardUrl = (color) => `https://placehold.co/50x50/${color}/white?text=${color}`;
 const buildClosedCardUrl = (color) => `https://placehold.co/50x50/gray/white?text=Closed`;
 
 const buildCardElement = (cardData) => {
@@ -61,7 +61,7 @@ const startGame = () => {
         gameField.append(cardEl);
     });
     gameField.addEventListener('click', (event) => {
-        console.log(gameField);
+        console.log(event.target);
     });
 };
 
