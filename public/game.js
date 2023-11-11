@@ -5,6 +5,17 @@ const CARDS_STATES = {
     invalid: 'invalid'
 };
 
+const ELEMENTS = [
+    'red',
+    'blue',
+    'orange',
+    'purple'
+];
+
+const getStepsCounter = () => {
+    return document.getElementById('stepsCount');
+}
+
 const buildOpenCardUrl = (id) => `https://placehold.co/50x50/gray/white?text=${id}`;
 const buildClosedCardUrl = () => `https://placehold.co/50x50/white/black?text=Closed`;
 
@@ -26,6 +37,7 @@ const buildCardElement = ({ id, name, state }) => {
 
     el.setAttribute('src', url);
 
+    el.dataset.role = 'card';
     el.dataset.name = name;
     el.dataset.state = state;
     el.dataset.id = id;
@@ -85,30 +97,52 @@ const handleClickCard = (gameField, clickedCard) => {
             });
         }, 1000);
     }
+
+    const counterElement = getStepsCounter();
+
+    const stepsCount = Number(counterElement.dataset.stepsCount);
+    const stepsCountInc = stepsCount + 1;
+    counterElement.dataset.stepsCount = stepsCountInc;
+
+    counterElement.innerText = `Ходов: ${stepsCountInc}`;
+
+    const finishedCards = gameField.querySelectorAll(`[data-role="card"][data-state= "${CARDS_STATES.finished}"]`);
+    const isWon = (finishedCards.length / 2) === ELEMENTS.length;
+
+    if (!isWon) {
+        return;
+    }
+
+    setTimeout(() => {
+        alert(`МОЛОДЕЦ, ВЫ ПОБЕДИЛИ, ЭТО ЗАНЯЛО У ВАС ${stepsCountInc} ХОДОВ!!!!!`)
+        const confirmNewGame = confirm("Вы хотите продолжить игру?");
+        if (confirmNewGame) {
+            startGame();
+        }
+    }, 1500);
 };
 
-const prepareCards = () => {
+const prepareCards = (elements) => {
     let id = 1;
-    const elements = [
-        'red',
-        'blue',
-        'orange',
-        'purple'
-    ];
+
     const cards = shuffle([...elements, ...elements]);
 
     return cards.map((name) => ({name, state: 'closed', id: id++ }));
 };
 
 const startGame = () => {
-    const gameData = {
-        stepsCount: 0,
-        cards: prepareCards(),
-    };
+    const stepsCount = 0;
+    const cards = prepareCards(ELEMENTS);
 
     const gameField = document.getElementById('gameField');
+    gameField.innerText = '';
+    const stepsCounter = getStepsCounter();
+    stepsCounter.dataset.stepsCount = stepsCount;
+    stepsCounter.innerText = `Ходов: ${stepsCount}`;
 
-    gameData.cards.forEach((card) => {
+    stepsCounter.classList.remove('d-none');
+
+    cards.forEach((card) => {
         const cardEl = buildCardElement(card);
         gameField.append(cardEl);
     });
@@ -116,5 +150,3 @@ const startGame = () => {
         handleClickCard(gameField, event.target);
     });
 };
-
-startGame();

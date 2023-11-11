@@ -17,6 +17,10 @@
       <h1>Memory Game</h1>
     </header>
 
+    <button id="start-game" class="btn btn-outline-primary mb-2">Начать заново</button>
+    <div>
+        <p class="d-none" id="stepsCount"></p>
+    </div>
     <main id="gameField">
     </main>
 
@@ -27,9 +31,13 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 </body>
-<script src="./game.js" type="module">
+<script src="./game.js">
 </script>
 <script>
-
+    window.addEventListener('DOMContentLoaded', () => {
+        document.querySelector('#start-game').addEventListener('click', () => {
+            startGame();
+        });
+    });
 </script>
 </html>
