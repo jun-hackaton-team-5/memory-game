@@ -150,7 +150,7 @@ const handleClickCard = (gameField, clickedCard) => {
     const modalMessage = document.getElementById('modal-message');
     modalMessage.innerText = `Поздравляем, вы завершили игру. Количество выполненных ходов: ${stepsCountInc}`;
     const gif = document.createElement('img');
-    gif.src = '/img/wow-shocked.gif';
+    gif.src = 'img/wow-shocked.gif';
     modalMessage.append(gif);
     modal.show();
 };
