@@ -40,8 +40,8 @@ const buildCardElement = ({ id, name, state }) => {
     cardElement.style.minHeight = '10rem';
 
     const root = window.location.href;
-    const cardImageUrl = `./img/${name}.svg`;
-    const cardCoverUrl = './img/logo.jpg';
+    const cardImageUrl = `img/${name}.svg`;
+    const cardCoverUrl = 'img/logo.jpg';
 
     let url = '';
 
