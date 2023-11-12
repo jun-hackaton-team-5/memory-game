@@ -94,8 +94,8 @@ const handleClickCard = (gameField, clickedCard) => {
 
     // NOTE: открытую карту помечаем для сравнения
     clickedCardData.state = CARDS_STATES.comparing;
-    clickedCard.replaceWith(buildCardElement({ ...clickedCardData}));
-    const newClickedCard = document.querySelector(`[data-id="${clickedCardData.id}"]`);
+    const newClickedCard = buildCardElement({ ...clickedCardData });
+    clickedCard.replaceWith(newClickedCard);
 
     newClickedCard.addEventListener('click', (event) => {
         handleClickCard(gameField, event.target);
@@ -113,22 +113,20 @@ const handleClickCard = (gameField, clickedCard) => {
             buildCardElement({ ...anotherCard.dataset, state: CARDS_STATES.finished })
         );
     } else {
-        newClickedCard.replaceWith(
-            buildCardElement({ ...clickedCardData, state: CARDS_STATES.invalid })
-        );
-        anotherCard.replaceWith(
-            buildCardElement({ ...anotherCard.dataset, state: CARDS_STATES.invalid })
-        );
+        const card1 = buildCardElement({ ...clickedCardData, state: CARDS_STATES.invalid });
+        newClickedCard.replaceWith(card1);
+        const card2 = buildCardElement({ ...anotherCard.dataset, state: CARDS_STATES.invalid });
+        anotherCard.replaceWith(card2);
 
         setTimeout(() => {
             gameField
                 .querySelectorAll(`[data-state="${CARDS_STATES.invalid}"]`)
                 .forEach((cardElement) => {
-                    cardElement.replaceWith(
-                        buildCardElement({ ...cardElement.dataset, state: CARDS_STATES.closed })
-                    );
+                    const closedCard = buildCardElement({ ...cardElement.dataset, state: CARDS_STATES.closed });
+                    closedCard.addEventListener('click', (event) => handleClickCard(gameField, event.target));
+                    cardElement.replaceWith(closedCard);
             });
-        }, 1000);
+        }, 500);
     }
 
     const counterElement = getStepsCounter();
