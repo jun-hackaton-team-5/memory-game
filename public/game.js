@@ -7,15 +7,15 @@ const CARDS_STATES = {
 
 const ELEMENTS = [
     'butterfly',
-    'hand-heart',
-    'handshake',
-    'heart',
-    'home',
-    'search-heart',
-    'smile',
-    'sun',
-    'users-alt',
-    'flower'
+    // 'hand-heart',
+    // 'handshake',
+    // 'heart',
+    // 'home',
+    // 'search-heart',
+    // 'smile',
+    // 'sun',
+    // 'users-alt',
+    // 'flower'
 ];
 
 const CARDS_PER_ROW = 4;
@@ -146,13 +146,12 @@ const handleClickCard = (gameField, clickedCard) => {
         return;
     }
 
-    setTimeout(() => {
-        alert(`Молодец! Вы справились за ${stepsCountInc} ходов`)
-        const confirmNewGame = confirm("Вы хотите сыграть снова игру?");
-        if (confirmNewGame) {
-            startGame();
-        }
-    }, 1500);
+    const modal = new bootstrap.Modal(document.getElementById('modal'));
+    document.getElementById('modal-reset-game')
+        .addEventListener('click', () => resetGame());
+    const modalMessage = document.getElementById('modal-message');
+    modalMessage.innerText = `Поздравляем, вы завершили игру. Количество выполненных ходов: ${stepsCountInc}`;
+    modal.show();
 };
 
 const prepareCards = (elements) => {

@@ -11,6 +11,24 @@
 </head>
 
 <body>
+<!-- Modal -->
+<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalLabel">Поздравляем</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modal-message">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary" id="modal-reset-game" data-bs-dismiss="modal">Играть еще раз</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <body class="bg-light">
     <div class="col-lg-8 mx-auto p-3 py-md-5">
