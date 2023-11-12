@@ -7,15 +7,15 @@ const CARDS_STATES = {
 
 const ELEMENTS = [
     'butterfly',
-    // 'hand-heart',
-    // 'handshake',
-    // 'heart',
-    // 'home',
-    // 'search-heart',
-    // 'smile',
-    // 'sun',
-    // 'users-alt',
-    // 'flower'
+    'hand-heart',
+    'handshake',
+    'heart',
+    'home',
+    'search-heart',
+    'smile',
+    'sun',
+    'users-alt',
+    'flower'
 ];
 
 const CARDS_PER_ROW = 4;
