@@ -21,7 +21,7 @@ const ELEMENTS = [
 const CARDS_PER_ROW = 4;
 
 const getStepsCounter = () => {
-    return document.getElementById('steps-count');
+    return document.getElementById('steps-counter');
 }
 
 const buildcardsRow = () => {
@@ -71,11 +71,6 @@ const buildCardElement = ({ id, name, state }) => {
     cardElement.dataset.state = state;
     cardElement.dataset.id = id;
 
-    cardElement.addEventListener('click', (event) => {
-        console.log('click!');
-        handleClickCard(gameField, event.target);
-    });
-
     return cardElement;
 }
 
@@ -89,7 +84,6 @@ const shuffle = (elements) => elements
  * @param {HTMLElement} cardEl
  */
 const handleClickCard = (gameField, clickedCard) => {
-    console.log(clickedCard);
     const { dataset: clickedCardData } = clickedCard;
     const anotherCard = gameField
         .querySelector(`[data-state="${CARDS_STATES.comparing}"]:not([data-id="${clickedCardData.id}"])`);
@@ -102,6 +96,10 @@ const handleClickCard = (gameField, clickedCard) => {
     clickedCardData.state = CARDS_STATES.comparing;
     clickedCard.replaceWith(buildCardElement({ ...clickedCardData}));
     const newClickedCard = document.querySelector(`[data-id="${clickedCardData.id}"]`);
+
+    newClickedCard.addEventListener('click', (event) => {
+        handleClickCard(gameField, event.target);
+    });
 
     if (anotherCard === null) {
         return;
@@ -165,17 +163,46 @@ const prepareCards = (elements) => {
     return cards.map((name) => ({name, state: 'closed', id: id++ }));
 };
 
+const buildStepsCounter = (count = 0) => {
+    const counter = document.createElement('p');
+    counter.id = 'steps-counter';
+    counter.innerText = `Ходов: ${count}`;
+    counter.dataset.stepsCount = count;
+
+    return counter;
+};
+
+const buildResetButton = () => {
+    // <button class="btn btn-outline-primary" id="reset-game">Сброс</button>
+    const button = document.createElement('button');
+    button.classList.add('btn', 'btn-outline-danger');
+    button.id = 'reset-game';
+    button.innerText = 'Сброс';
+
+    button.addEventListener('click', () => {
+        if (confirm("сбросить?")) {
+            startGame();
+        }
+    });
+
+    return button;
+}
+
 const startGame = () => {
     const stepsCount = 0;
     const cards = prepareCards(ELEMENTS);
 
-    const gameField = document.getElementById('gameField');
-    gameField.innerText = '';
-    const stepsCounter = getStepsCounter();
-    stepsCounter.dataset.stepsCount = stepsCount;
+    const controlsBar = document.getElementById('controls');
+    controlsBar.innerText = '';
+    const stepsCounter = buildStepsCounter();
+    controlsBar.append(stepsCounter);
     stepsCounter.innerText = `Ходов: ${stepsCount}`;
 
-    stepsCounter.classList.remove('d-none');
+    const resetButton = buildResetButton();
+    controlsBar.append(resetButton);
+
+    const gameField = document.getElementById('game-field');
+    gameField.innerText = '';
 
     const cardsElements = cards.map((card) => buildCardElement(card));
     const rowsCount = cardsElements.length / CARDS_PER_ROW;
@@ -191,8 +218,16 @@ const startGame = () => {
 
     cardsElements.forEach((card) => {
         card.addEventListener('click', (event) => {
-            console.log('click!');
             handleClickCard(gameField, event.target);
         });
     }, true);
+
+    document.getElementById('reset-game')
+        .addEventListener('click', () => {
+            resetGame();
+    });
+};
+
+const resetGame = () => {
+    startGame();
 };
