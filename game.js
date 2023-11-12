@@ -173,17 +173,10 @@ const buildStepsCounter = (count = 0) => {
 };
 
 const buildResetButton = () => {
-    // <button class="btn btn-outline-primary" id="reset-game">Сброс</button>
     const button = document.createElement('button');
     button.classList.add('btn', 'btn-outline-danger');
     button.id = 'reset-game';
     button.innerText = 'Сброс';
-
-    button.addEventListener('click', () => {
-        if (confirm("сбросить?")) {
-            startGame();
-        }
-    });
 
     return button;
 }
@@ -200,6 +193,13 @@ const startGame = () => {
 
     const resetButton = buildResetButton();
     controlsBar.append(resetButton);
+
+    resetButton.addEventListener('click', () => {
+        const confirmResult = confirm("сбросить?");
+        if (confirmResult) {
+            resetGame();
+        }
+    });
 
     const gameField = document.getElementById('game-field');
     gameField.innerText = '';
@@ -221,11 +221,6 @@ const startGame = () => {
             handleClickCard(gameField, event.target);
         });
     }, true);
-
-    document.getElementById('reset-game')
-        .addEventListener('click', () => {
-            resetGame();
-    });
 };
 
 const resetGame = () => {
