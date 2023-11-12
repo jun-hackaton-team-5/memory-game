@@ -74,7 +74,7 @@ const buildCardElement = ({ id, name, state }) => {
     cardWrapper.style.backgroundImage = `url("${url}")`;
     cardWrapper.style.backgroundPosition = 'center';
     cardWrapper.style.backgroundRepeat = 'no-repeat';
-    cardWrapper.style.backgroundSize = '80%';
+    cardWrapper.style.backgroundSize = '70%';
     cardImage.setAttribute('src', url);
 
     cardWrapper.dataset.role = 'card';
@@ -93,7 +93,7 @@ const buildCardElement = ({ id, name, state }) => {
 
 const shuffle = (elements) => elements
     .map(value => ({ value, sort: Math.random() }))
-    // .sort((a, b) => a.sort - b.sort)
+    .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value);
 
 /**
