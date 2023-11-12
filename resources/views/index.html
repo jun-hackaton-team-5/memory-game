@@ -12,32 +12,55 @@
 
 <body>
 
-  <div class="col-lg-8 mx-auto p-3 py-md-5">
-    <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
-      <h1>Memory Game</h1>
-    </header>
+  <body class="bg-light">
+    <div class="col-lg-8 mx-auto p-3 py-md-5">
+      <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        <h1>Memory Game</h1>
+      </header>
 
-    <button id="start-game" class="btn btn-outline-primary mb-2">Начать заново</button>
-    <div>
-        <p class="d-none" id="stepsCount"></p>
-    </div>
-    <main id="gameField">
-    </main>
+      <main class="container" style="height: 850px; width: 850px;">
+        <div class="row">
+          <div class="col" style="display: flex; margin-bottom: 20px; justify-content: space-between" id="controls">
+            <p id="steps-count"></p>
+            <button class="btn btn-primary" id="start-game">Начать играть</button>
+          </div>
+        </div>
+        <div class="container" id="gameField">
+        </div>
 
-    <footer class="pt-5 my-5 text-muted border-top">
-    </footer>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-</body>
-<script src="./game.js">
-</script>
-<script>
+      </main>
+      <footer class="bg-light text-center text-lg-start">
+        <div class="container p-4">
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+              <p class="text-uppercase">Проект подготовлен для благотворительного хакатона</p>
+
+            </div>
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+
+              <a href="https://github.com/jun-hackaton-team-5/memory-game">Исходный код</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+          © 2023 Copyright:
+          <a class="text-reset fw-bold" href="https://jun-hackaton-landing.vercel.app/">Jun Hakaton</a>
+        </div>
+      </footer>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+  </body>
+  <script src="./game.js">
+  </script>
+  <script>
     window.addEventListener('DOMContentLoaded', () => {
-        document.querySelector('#start-game').addEventListener('click', () => {
-            startGame();
-        });
+      document.querySelector('#start-game').addEventListener('click', () => {
+        startGame();
+      });
     });
-</script>
+  </script>
+
 </html>
