@@ -35,20 +35,10 @@ const buildcardsRow = () => {
 }
 
 const buildCardElement = ({ id, name, state }) => {
-    const cardWrapper = document.createElement('div');
-    // <div class="card col bg-secondary shadow" style="max-width: 10rem;">
-    //     <img src="img/home.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;">
-    // </div>
-    cardWrapper.classList.add('card', 'col', 'bg-secondary', 'shadow');
-    cardWrapper.style.width = "10rem;";
-    cardWrapper.style.height = '10rem';
-    // cardWrapper.style.backgroundImage =
-
-
-    // <img src="img/butterfly.svg" class="card-img-top py-5 mx-auto" alt="..." style="width: 100px;"></img>
-    const cardImage = document.createElement('img');
-    cardImage.classList.add('card-img-top', 'py-5', 'mx-auto');
-    cardImage.style.width = '100px';
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('card', 'col', 'bg-secondary', 'shadow');
+    cardElement.style.width = "10rem;";
+    cardElement.style.height = '10rem';
 
     const cardImageUrl = `/img/${name}.svg`;
     const cardCoverUrl = '/img/logo.jpg';
@@ -57,38 +47,36 @@ const buildCardElement = ({ id, name, state }) => {
 
     if (state === CARDS_STATES.finished) {
         url = cardImageUrl;
-        cardWrapper.classList.add('bg-success');
+        cardElement.classList.add('bg-success');
 
     } else if (state === CARDS_STATES.comparing) {
         url = cardImageUrl;
-        cardWrapper.classList.add('bg-secondary');
+        cardElement.classList.add('bg-secondary');
     } else if (state === CARDS_STATES.closed) {
         url = cardCoverUrl;
-        cardWrapper.classList.add('bg-white');
+        cardElement.classList.add('bg-white');
     } else if (state === CARDS_STATES.invalid) {
         url = cardImageUrl;
-        cardWrapper.classList.add('bg-danger');
+        cardElement.classList.add('bg-danger');
     } else {
         throw Error("invalid card state");
     }
-    cardWrapper.style.backgroundImage = `url("${url}")`;
-    cardWrapper.style.backgroundPosition = 'center';
-    cardWrapper.style.backgroundRepeat = 'no-repeat';
-    cardWrapper.style.backgroundSize = '70%';
-    cardImage.setAttribute('src', url);
+    cardElement.style.backgroundImage = `url("${url}")`;
+    cardElement.style.backgroundPosition = 'center';
+    cardElement.style.backgroundRepeat = 'no-repeat';
+    cardElement.style.backgroundSize = '70%';
 
-    cardWrapper.dataset.role = 'card';
-    cardWrapper.dataset.name = name;
-    cardWrapper.dataset.state = state;
-    cardWrapper.dataset.id = id;
-    // cardWrapper.append(cardImage);
+    cardElement.dataset.role = 'card';
+    cardElement.dataset.name = name;
+    cardElement.dataset.state = state;
+    cardElement.dataset.id = id;
 
-    cardWrapper.addEventListener('click', (event) => {
+    cardElement.addEventListener('click', (event) => {
         console.log('click!');
         handleClickCard(gameField, event.target);
     });
 
-    return cardWrapper;
+    return cardElement;
 }
 
 const shuffle = (elements) => elements
@@ -161,8 +149,8 @@ const handleClickCard = (gameField, clickedCard) => {
     }
 
     setTimeout(() => {
-        alert(`МОЛОДЕЦ, ВЫ ПОБЕДИЛИ, ЭТО ЗАНЯЛО У ВАС ${stepsCountInc} ХОДОВ!!!!!`)
-        const confirmNewGame = confirm("Вы хотите продолжить игру?");
+        alert(`Молодец! Вы справились за ${stepsCountInc} ходов`)
+        const confirmNewGame = confirm("Вы хотите сыграть снова игру?");
         if (confirmNewGame) {
             startGame();
         }
