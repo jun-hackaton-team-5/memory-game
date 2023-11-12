@@ -25,7 +25,6 @@ const getStepsCounter = () => {
 }
 
 const buildcardsRow = () => {
-    // <div class="row justify-content-center" style="gap: 43px; margin-bottom: 20px;">
     const row = document.createElement('div');
     row.classList.add('row', 'justify-content-center');
     row.style.gap = '43px';
@@ -37,8 +36,8 @@ const buildcardsRow = () => {
 const buildCardElement = ({ id, name, state }) => {
     const cardElement = document.createElement('div');
     cardElement.classList.add('card', 'col', 'bg-secondary', 'shadow');
-    cardElement.style.width = "10rem;";
-    cardElement.style.height = '10rem';
+    cardElement.style.minWidth = "10rem;";
+    cardElement.style.minHeight = '10rem';
 
     const cardImageUrl = `/img/${name}.svg`;
     const cardCoverUrl = '/img/logo.jpg';
@@ -149,6 +148,9 @@ const handleClickCard = (gameField, clickedCard) => {
         .addEventListener('click', () => resetGame());
     const modalMessage = document.getElementById('modal-message');
     modalMessage.innerText = `Поздравляем, вы завершили игру. Количество выполненных ходов: ${stepsCountInc}`;
+    const gif = document.createElement('img');
+    gif.src = '/img/wow-shocked.gif';
+    modalMessage.append(gif);
     modal.show();
 };
 
