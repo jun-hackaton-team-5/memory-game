@@ -27,8 +27,9 @@ const getStepsCounter = () => {
 const buildcardsRow = () => {
     const row = document.createElement('div');
     row.classList.add('row', 'justify-content-center');
-    row.style.gap = '43px';
-    row.style.marginBottom = '20px';
+    row.style.gap = '21.5px';
+    row.style.marginBottom = '10px';
+    row.style.height = '200px';
 
     return row;
 }
@@ -36,8 +37,8 @@ const buildcardsRow = () => {
 const buildCardElement = ({ id, name, state }) => {
     const cardElement = document.createElement('div');
     cardElement.classList.add('card', 'col', 'bg-secondary', 'shadow');
-    cardElement.style.minWidth = "10rem;";
-    cardElement.style.minHeight = '10rem';
+    cardElement.style.width = "5rem;";
+    cardElement.style.minHeight = '5rem';
 
     const root = window.location.href;
     const cardImageUrl = `img/${name}.svg`;
