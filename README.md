@@ -1,12 +1,12 @@
 # Memory Game
 
-Игра для благотворительного хакатона <https://jun-hackaton-landing.vercel.app/>
-
-Демонстрация: <https://jun-hackaton-team-5.github.io/memory-game/>
+[Демонстрация](https://jun-hackaton-team-5.github.io/memory-game/)
 
 Игра с карточками, которые открываются попарно, и задача - открыть все карточки за наименьшее количество ходов.
 
-Что сделано
+Игра для [благотворительного хакатона](https://jun-hackaton-landing.vercel.app/)
+
+## Выполнено
 
 * [x] вывод поля с рандомно расположенными карточками (каждый раунд - новая позиция карточек);
 * [x] возможность открывать карточки;
@@ -17,13 +17,13 @@
 
 ## Технологии
 
-* Иконки <https://www.flaticon.com/>
 * Bootstrap
 * Javascript
+* [Иконки](https://www.flaticon.com/)
 * Github Pages
 
 ## Наша команда
 
-* Anastasia <https://t.me/lilanastesha>
-* Anna <https://t.me/annajg>
-* Nikolay <https://t.me/time2run>
+* [Anastasia](https://t.me/lilanastesha)
+* [Anna](https://t.me/annajg)
+* [Nikolay](https://t.me/time2run)
